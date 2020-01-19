@@ -48,7 +48,7 @@ Part 2: Check if the updated path satisfies the conditions
 This section checks if the path is valid, i.e., for each package delivery task, if the source location is visited prior to the destination location.
 Additionally, it calculated the number of jobs completed by the updated path. We return the updated path if 
 A. all tasks are completed within the working hour limit or B. if the number of tasks completed are greater than the maximum number of jobs completed by the previous search paths.  
-We save the returned path as the optimal path if the distance travelled is less than the shortest distance travelled or if the number of jobs completed is greater than the maximum number of jobs completed by the previous search paths.
+
 ```
 numjob = 0
 for i in range(len(SOURCE)):
@@ -64,7 +64,7 @@ if numjob > maxJobsCompleted and totaltime < MaxHours:
 ```
 
 Part 3: Search for next valid location
-This section searches for the next location from the list of next valid locations for the current location denoted in the graph. A location that is not located in the path is selected and parts 1 to 3 are repeated.
+This section searches for the next location from the list of next valid locations for the current location denoted in the graph. A location that is not visited in the path is selected and parts 1 to 3 are repeated.
 ```
 optimal_path = None
 optimal_distance = 10000
@@ -74,12 +74,14 @@ for NODE in G[CURRENT]:
 	if NODE not in path:
 		newpath, newdistance, newtime, JobsCompleted = get_optimum_route(NODE,SOURCE,DESTINATION,TRAVELTIME,servicetime,
 			MaxHours,dist_mat,G,path,distance,totaltime,maxJobsCompleted)
-
-		if not optimal_path or (JobsCompleted == maxJobsCompleted and newdistance < optimal_distance) or (JobsCompleted > maxJobsCompleted):
-			optimal_path = newpath
-			optimal_distance = newdistance
-			optimal_time = newtime
-			maxJobsCompleted = JobsCompleted
+```
+We save the returned path as the optimal path if the distance travelled is less than the shortest distance travelled or if the number of jobs completed is greater than the maximum number of jobs completed by the previous search paths.
+```
+if not optimal_path or (JobsCompleted == maxJobsCompleted and newdistance < optimal_distance) or (JobsCompleted > maxJobsCompleted):
+	optimal_path = newpath
+	optimal_distance = newdistance
+	optimal_time = newtime
+	maxJobsCompleted = JobsCompleted
 ```
 
 
