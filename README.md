@@ -130,3 +130,10 @@ print('Estimated time: ', out[2])
 print('Est. number of completed jobs: ', out[3])
 
 ```
+Output:
+```
+Route:  [(-1, -1), (0, 0), (3, 1), (1, 1), (2, 2)]
+Estimated distance:  10
+Estimated time:  1.7584289466030132
+Est. number of completed jobs:  3
+```
