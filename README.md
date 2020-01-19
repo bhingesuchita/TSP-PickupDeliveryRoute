@@ -35,19 +35,32 @@ Future scope:
 The proposed algorithm assumes that the capacity of the vehicle is equal to greater than the total capacity of packages. If there are limitations on the capacity of the vehicle, the conditions in part 2 of the algorithm can be updated to incorporate capacity constraints. In some cases, the priority of certain deliveries is higher than others, in which case a weighted graph can be used. For the weighted graphs the weight of priority locations can be set higher than others and these locations can be picked based on their weights in part 3 of the algorithm.
 
 Example:
+
 source = [(0,0),(0,0),(3,1)] 
+
 destination = [(2,2),(2,2),(1,1)]
+
 starting_point = [(-1,-1)]
+
 nodes = list(set(source + destination + starting_point))
+
 traveltime = {}
+
 for i in nodes:
+
 	for j in nodes:
+	
 		if i != j:
+		
 			traveltime[(i,j)] = np.random.uniform()
 		
 out = get_optimum_route(starting_point[-1],source,destination,traveltime)
+
 print('Route: ', out[0])
+
 print('Estimated distance: ', out[1])
+
 print('Estimated time: ', out[2])
+
 print('Est. number of completed jobs: ', out[3])
 
