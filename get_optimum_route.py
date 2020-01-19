@@ -46,7 +46,10 @@ def get_optimum_route(CURRENT,SOURCE,DESTINATION,TRAVELTIME,servicetime = [],Max
 					traveltime[(i,j)] = np.random.uniform()
 				
 		out = get_optimum_route(starting_point[-1],source,destination,traveltime)
-		print(out)
+		print('Route: ', out[0])
+		print('Estimated distance: ', out[1])
+		print('Estimated time: ', out[2])
+		print('Est. number of completed jobs: ', out[3])
 	"""
 	#------------------------------------------ Check input parameters-------------------------------------------
 	if not MaxHours:
@@ -122,4 +125,3 @@ def get_optimum_route(CURRENT,SOURCE,DESTINATION,TRAVELTIME,servicetime = [],Max
 				maxJobsCompleted = JobsCompleted
 
 	return optimal_path, optimal_distance, optimal_time, maxJobsCompleted
-
