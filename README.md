@@ -6,17 +6,37 @@ Description – The goal of travelling salesman problem is to find the shortest 
 3. The objective is to maximize the number of deliveries within a certain working hour limit and minimize the distance travelled by the vehicle.
 
 Problem formulation –
+
 A graph-based approach is used to solve the TSP while considering the conditions mentioned above. As a first step, we generate a directional graph denoting all the valid directions a search path can take. The valid connections are given as follows:
 a. The vehicle can travel from one source to its own destination, but not otherwise.
 b. The vehicle can travel from one source to other sources, but not other destinations.
 c. The vehicle can travel from one destination to other sources and other destinations.
 The first two conditions avoid the vehicle to travel to the destination prior to the corresponding source, whereas the third condition allows the vehicle to travel to multiple source locations prior to travelling to the corresponding delivery locations. 
-
-Implementation –
-First, import all necessary libraries. We will use `defaultdict` from `collections` to generate the graph.
+We will use `defaultdict` from `collections` to generate the graph.
 ```
 import collections
+
+G = collections.defaultdict(list)
+if CURRENT not in SOURCE and CURRENT not in DESTINATION: # The starting point is not in the list of source and destinations
+	for i in range(len(SOURCE)):
+		G[CURRENT].append(SOURCE[i])
+for i in range(len(SOURCE)): # Connect each source to its destination
+	G[SOURCE[i]].append(DESTINATION[i])
+
+	for j in range(len(SOURCE)): # Connect each source to other sources
+		if i != j:
+			G[SOURCE[i]].append(SOURCE[j])
+
+for i in range(len(DESTINATION)): # Connect each destination to other sources
+	for j in range(len(SOURCE)):
+		if i != j:
+			G[DESTINATION[i]].append(SOURCE[j])
+	for j in range(len(DESTINATION)): # Connect each destination to other destinations
+		if i != j:
+			G[DESTINATION[i]].append(DESTINATION[j])
 ```
+
+Implementation –
 We use a recursive approach to search for an optimal path that satisfies the conditions mentioned in description section. The function can be divided into three parts:
 1. Update parameters of the path based on current location
 2. Check if the updated path satisfies the conditions, if yes save this path and its metrics (such as distance, total time and number of jobs it completed)
