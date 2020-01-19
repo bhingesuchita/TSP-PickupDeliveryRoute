@@ -106,7 +106,7 @@ if not optimal_path or (JobsCompleted == maxJobsCompleted and newdistance < opti
 
 
 Future scope:
-The proposed algorithm assumes that the capacity of the vehicle is equal to greater than the total capacity of packages. If there are limitations on the capacity of the vehicle, the conditions in part 2 of the algorithm can be updated to incorporate capacity constraints. In some cases, the priority of certain deliveries is higher than others, in which case a weighted graph can be used. For the weighted graphs the weight of priority locations can be set higher than others and these locations can be picked based on their weights in part 3 of the algorithm.
+The proposed algorithm assumes that the capacity of the vehicle is equal to greater than the total capacity of packages. If there are limitations on the capacity of the vehicle, the conditions in part 2 of the algorithm can be updated to incorporate capacity constraints. In some cases, the priority of certain deliveries is higher than others. In such cases a weighted graph can be used. For weighted graphs the weight of priority locations can be set higher than others and the location with higher weights can be added to the queue first in part 3 of the algorithm.
 
 Example:
 ```
